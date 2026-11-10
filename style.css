@@ -9,9 +9,9 @@ body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background-color: #f1f5f9;
     color: #1e293b;
-        min_-height: 100vh;
-        display: flex;
-        flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 /*header styling*/
 .header {
@@ -37,23 +37,57 @@ body {
     align-items: center;
     gap: 50px;
     padding:60px 10%;
+    min-height: 70vh;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+.background-image {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+.background-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.58);
+}
+.apartment-background {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 /*welcome section*/
+.welcome-section{
+    flex:1;
+    position:relative;
+    z-index: 1;
+    color:white;
+    max-width: 500px;
+
+}
 .welcome-section h1 {
-    font-size: 42px;
-    max-width: 600px;
+    font-size: 38px;
+    margin-bottom: 20px;
 }
 .welcome-section p {
-    font-size: 42px;
-    color: #64748b;
+    font-size: 18px;
+    color: #f1f5f9;
     margin-top: 20px;
     line-height: 1.8;
+    max-width: 500px;
 }
 /*login form section*/
 .login-section{
     flex:1;
     display: flex;
     justify-content: center;
+    align-items: center;
+    position:relative;
+    z-index: 1;
     
 }
 /*login card*/
@@ -70,9 +104,10 @@ body {
     color:#64748b;
     margin-bottom: 20px;
 
-}.logn-description {
-    font-size: 28px;
-    color: #102a43;
+}
+.login-description {
+    font-size: 14px;
+    color: #64748b;
     margin-bottom: 30px;
 }/*form groups*/
 .form-group {
@@ -120,7 +155,7 @@ body {
     text-decoration: underline;
 }
 /*login button*/
-#loginbutton {
+#loginButton {
     width: 100%;
     padding: 14px;
     background-color: #0d9488;
@@ -131,7 +166,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s;
 }
-#loginbutton:hover {
+#loginButton:hover {
     background-color: #0f766e;
 }
 /*feedback message*/
@@ -153,14 +188,22 @@ body {
     .login-container {
         flex-direction: column;
         padding: 40px 5%;
+        gap:35px;
+    }
+    .background-image{
+        width:100%;
     }
     .welcome-section {
+        max-width: 100%;
         text-align: center;
     }
     .welcome-section h1 {
-        font-size: 32px;
+        font-size: 30px;
     }
     .welcome-section p {
         font-size: 16px;
+    }
+    .login-box{
+        max-width: 450px;
     }
 }

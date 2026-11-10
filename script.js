@@ -25,16 +25,14 @@ const message = document.getElementById("message");
 
 loginForm.addEventListener("submit", function (event) {
 
-    // Prevent the browser from submitting the form
-    event.preventDefault();
-
     // Get user input
     const email = document.getElementById("email").value.trim();
-    const password = passwordInput.value.trim();
+    const password = passwordInput.value;
 
     // Check empty fields
     if (email === "" || password === "") {
 
+        event.preventDefault();
         message.textContent = "Please fill in all fields.";
         message.style.color = "red";
 
@@ -46,14 +44,24 @@ loginForm.addEventListener("submit", function (event) {
 
     if (!emailPattern.test(email)) {
 
+        event.preventDefault();
         message.textContent = "Please enter a valid email address.";
         message.style.color = "red";
 
         return;
     }
 
-    // Display feedback
-    message.textContent = "Form validated successfully! Authentication will be connected later.";
-    message.style.color = "green";
-
 });
+
+const loginErrors = {
+    invalid_input: "Enter a valid email address and password.",
+    login_failed: "The email or password is incorrect, or the account is inactive.",
+    server_error: "Login is temporarily unavailable. Please try again later."
+};
+
+const errorCode = new URLSearchParams(window.location.search).get("error");
+
+if (errorCode && loginErrors[errorCode]) {
+    message.textContent = loginErrors[errorCode];
+    message.style.color = "red";
+}
